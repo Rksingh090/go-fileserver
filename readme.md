@@ -104,22 +104,6 @@ curl -X POST http://localhost:8080/upload \
 - Videos (.mp4, .avi)
 - Other files are stored in the others directory.
 
-## Systemd service
-```bash
-[Unit]
-Description=KM File Server
-After=network.target
-
-[Service]
-User=root
-WorkingDirectory=/
-ExecStart=/usr/local/bin/kmfileserver
-Restart=always
-Environment="MONGO_URI=mongodb+srv://sunny:sunny808090@cluster0.qh0mk.mongodb.net/xkaammilega"
-
-[Install]
-WantedBy=multi-user.target
-```
 
 ## License
 This project is licensed under the MIT License.
