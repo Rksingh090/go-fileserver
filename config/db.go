@@ -3,6 +3,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -13,7 +14,12 @@ func ConnectDB() *mongo.Client {
 	ctx, cancle := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancle()
 
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(MONGO_DB_URL))
+	MONGO_URL, URL_FOUND := os.LookupEnv("MONGO_URI")
+	if !URL_FOUND {
+		panic("MONGO_URI not found in .env file")
+	}
+
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(MONGO_URL))
 
 	if err != nil {
 		fmt.Println(err)

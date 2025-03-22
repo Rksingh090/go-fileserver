@@ -45,7 +45,7 @@ const (
 
 - **FILES_STATIC_DIR**: This is the directory where uploaded files will be stored on the server. In this case, it's set to `/appdata`.
 
-- **FILES_ACCESS_PREFIX_URL**: This is the URL path prefix through which files will be accessible. Files uploaded to the server will be available at paths starting with `/files/access`.
+- **FILES_ACCESS_PREFIX_URL**: This is the URL path prefix through which files will be accessible. Files uploaded to the server will be available at this, in this case the path is `/files/access/{FILE_LOCATION}`.
 
 - **MONGO_DB_URL**: The MongoDB connection string for storing the file metadata. Replace "DB_NAME_TO_USE_FOR_STORING_FILE_DETAILS" with your actual MongoDB connection string.
 
