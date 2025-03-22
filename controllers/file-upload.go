@@ -49,7 +49,7 @@ func UploadFile(c *gin.Context) {
 	baseDir := filepath.Join(subDir, upload_directory, uniqueFileName)
 	dstDir := filepath.Join(config.FILES_STATIC_DIR, subDir, upload_directory)
 	dst := filepath.Join(dstDir, uniqueFileName)
-	url := filepath.Join("files", "aplemanvadhikar", baseDir)
+	url := filepath.Join(config.FILES_ACCESS_PREFIX_URL, baseDir)
 
 	// Create the directory if it doesn't exist
 	if err := os.MkdirAll(dstDir, os.ModePerm); err != nil {
