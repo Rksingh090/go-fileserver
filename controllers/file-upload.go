@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"fileserver/config"
 	"fileserver/i18n"
@@ -12,6 +13,7 @@ import (
 	"fileserver/util"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shirou/gopsutil/v4/cpu"
 )
 
 func UploadFile(c *gin.Context) {
@@ -100,4 +102,14 @@ func UploadFile(c *gin.Context) {
 			"url":       url,
 		},
 	})
+}
+
+func GetCPUUsage(c *gin.Context) {
+	percentages, err := cpu.Percent(time.Second, false)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"cpu_usage": percentages[0]})
 }

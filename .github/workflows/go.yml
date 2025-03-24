@@ -31,4 +31,26 @@ jobs:
         username: root
         password: ${{ secrets.SSH_PASSWORD }}
         port: 22
-        script: whoami
+        script: |
+          sudo systemctl stop kmfileserver
+
+    - name: copy file via ssh password
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: root
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: 22
+        source: "bin/kmfileserver"
+        target: "/usr/local/bin/kmfileserver"
+
+    - name: SSH and run script
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: root
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: 22
+        script: |
+          sudo chmod +x /usr/local/bin/kmfileserver
+          sudo systemctl restart kmfileserver.service
