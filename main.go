@@ -41,7 +41,7 @@ func main() {
 	app.Static(config.FILES_ACCESS_PREFIX_URL, config.FILES_STATIC_DIR)
 
 	// give cpu usage
-	app.GET("/cpu", controllers.GetCPUUsage)
+	app.GET("/stats", controllers.GetCPUUsage)
 
 	// Handle 404
 	app.NoRoute(func(c *gin.Context) {

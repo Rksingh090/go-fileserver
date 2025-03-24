@@ -111,5 +111,8 @@ func GetCPUUsage(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"cpu_usage": percentages[0]})
+	c.JSON(http.StatusOK, gin.H{
+		"cpu_usage": percentages[0],
+		"version":   "1.0.0",
+	})
 }
