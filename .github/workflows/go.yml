@@ -43,7 +43,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         port: 22
         source: "./bin/kmfileserver"
-        target: "/usr/local/bin/kmfileserver"
+        target: "/usr/local/bin"
 
     - name: SSH and run script
       uses: appleboy/ssh-action@v1
