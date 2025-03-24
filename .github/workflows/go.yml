@@ -36,13 +36,13 @@ jobs:
           mkdir -p /usr/local/bin/test
 
     - name: copy file via ssh password
-      uses: appleboy/scp-action@v0.1.7
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
         username: root
         password: ${{ secrets.SSH_PASSWORD }}
         port: 22
-        source: "bin/kmfileserver"
+        source: "./bin/kmfileserver"
         target: "/usr/local/bin/kmfileserver"
 
     - name: SSH and run script
